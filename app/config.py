@@ -7,6 +7,7 @@ from typing import List
 @dataclass
 class DbConfig:
     host: str
+    port: int
     password: str
     user: str
     database: str
@@ -14,14 +15,15 @@ class DbConfig:
 
 @dataclass
 class TgBot:
-    api_id: str
+    api_id: int
     api_hash: str
     admin_ids: List[int]
+
 
 @dataclass
 class HttpServer:
     host: str
-    port: str
+    port: int
 
 
 @dataclass
@@ -53,6 +55,7 @@ def load_config(path: str = None):
         ),
         db=DbConfig(
             host=env.str('DB_HOST'),
+            port=env.int('DB_PORT'),
             password=env.str('DB_PASS'),
             user=env.str('DB_USER'),
             database=env.str('DB_NAME')
