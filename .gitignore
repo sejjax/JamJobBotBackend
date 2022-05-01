@@ -35,6 +35,9 @@ pip-delete-this-directory.txt
 *.mo
 *.pot
 
+# Temporary files
+temp/*
+
 
 # pyenv
 .python-version

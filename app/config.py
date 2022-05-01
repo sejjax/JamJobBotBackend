@@ -18,6 +18,11 @@ class TgBot:
     api_hash: str
     admin_ids: List[int]
 
+@dataclass
+class HttpServer:
+    host: str
+    port: str
+
 
 @dataclass
 class Miscellaneous:
@@ -27,6 +32,7 @@ class Miscellaneous:
 @dataclass
 class Config:
     tg_bot: TgBot
+    httpserver: HttpServer
     db: DbConfig
     misc: Miscellaneous
 
@@ -40,6 +46,10 @@ def load_config(path: str = None):
             api_id=env.str("API_ID"),
             api_hash=env.str("API_HASH"),
             admin_ids=list(map(int, env.list("ADMINS"))),
+        ),
+        httpserver=HttpServer(
+            host=env.str('HTTP_HOST'),
+            port=env.int('HTTP_PORT')
         ),
         db=DbConfig(
             host=env.str('DB_HOST'),

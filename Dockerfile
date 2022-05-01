@@ -6,4 +6,3 @@ WORKDIR /usr/src/app/"${BOT_NAME:-tg_bot}"
 COPY requirements.txt /usr/src/app/"${BOT_NAME:-tg_bot}"
 RUN pip3 install -r /usr/src/app/"${BOT_NAME:-tg_bot}"/requirements.txt
 COPY . /usr/src/app/"${BOT_NAME:-tg_bot}"
-CMD python3 /usr/src/app/"${BOT_NAME:-tg_bot}"/main.py
