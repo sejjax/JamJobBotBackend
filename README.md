@@ -19,4 +19,3 @@
 - Read all messages from HR in Telegram, extract interview time, date, link and create notification for that time.
 - Answer on the questions by HR
 - Notify about new interview
-
