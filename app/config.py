@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from environs import Env
 from typing import List
 
+# Global application configuration class
 
 @dataclass
 class DbConfig:
