@@ -1,5 +1,0 @@
-telethon~=1.24.0
-flask~=2.1.0
-flask[async]
-peewee~=3.14.0
-environs~=9.5.0

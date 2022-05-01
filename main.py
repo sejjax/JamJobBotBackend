@@ -3,7 +3,7 @@
 import asyncio
 import logging
 
-from app.app import get_app
+from jamjobbotbackend.app import get_app
 
 logger = logging.getLogger(__name__)
 

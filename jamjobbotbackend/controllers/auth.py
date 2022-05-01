@@ -1,6 +1,6 @@
 from telethon import TelegramClient
 from flask import Flask, request, make_response
-from app.services import auth
+from jamjobbotbackend.services import auth
 
 
 # Controllers to log in to Telegram account

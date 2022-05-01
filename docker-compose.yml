@@ -7,9 +7,9 @@ services:
     stop_signal: SIGINT
     build:
       context: .
-    working_dir: "/usr/src/app/${BOT_NAME:-tg_bot}"
+    working_dir: "/usr/src/jamjobbotbackend/${BOT_NAME:-tg_bot}"
     volumes:
-    - .:/usr/src/app/${BOT_NAME:-tg_bot}
+    - .:/usr/src/jamjobbotbackend/${BOT_NAME:-tg_bot}
     command: python3 -m bot
     restart: always
     env_file:

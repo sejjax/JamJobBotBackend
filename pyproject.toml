@@ -6,10 +6,12 @@ authors = ["Danil Sokolov <danilzyx@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+asyncio = "^3.4.3"
+Telethon = "^1.24.0"
+Flask = {extras = ["async"], version = "^2.1.2"}
+peewee = "^3.14.10"
+psycopg2-binary = "^2.9.3"
+environs = "^9.5.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+pytest = "^7.1.2"
