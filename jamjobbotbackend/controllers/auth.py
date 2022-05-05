@@ -1,10 +1,10 @@
 from telethon import TelegramClient
-from flask import Flask, request, make_response
+from quart import Quart, make_response, request
 from jamjobbotbackend.services import auth
 
 
 # Controllers to log in to Telegram account
-def register_auth_controller(client: TelegramClient, httpserver: Flask):
+def register_auth_controller(client: TelegramClient, httpserver: Quart):
     # Send verification code by Telegram
     @httpserver.post('/auth/send_code')
     async def send_code():

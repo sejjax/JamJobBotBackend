@@ -1,11 +1,16 @@
-FROM python:3.9-buster
-ENV BOT_NAME=$BOT_NAME
+FROM python:3.9
+ENV APP_NAME=$APP_NAME
+ENV APP_MODE=$APP_MODE
 
-WORKDIR /usr/src/app/"${BOT_NAME:-tg_bot}"
+WORKDIR /usr/src/app
 
 RUN apt update
-RUN pip install poetry
+RUN apt install systemd -y
+RUN pip3 install poetry
+RUN poetry config virtualenvs.create false
 
-COPY requirements.txt /usr/src/app/"${BOT_NAME:-tg_bot}"
-RUN pip3 install -r /usr/src/jamjobbotbackend/"${BOT_NAME:-tg_bot}"/pyproject.toml
-COPY . /usr/src/app/"${BOT_NAME:-tg_bot}"
+COPY pyproject.toml /usr/src/app
+RUN poetry install
+COPY . /usr/src/app
+
+RUN systemctl enable /usr/src/app/systemd/app.service

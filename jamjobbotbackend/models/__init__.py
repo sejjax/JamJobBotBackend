@@ -1,4 +1,4 @@
-from jamjobbotbackend.app import get_app
+from app import get_app
 from peewee import *
 
 app = get_app()
