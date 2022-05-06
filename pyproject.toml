@@ -7,12 +7,12 @@ authors = ["Danil Sokolov <danilzyx@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 asyncio = "^3.4.3"
-Telethon = "^1.24.0"
 peewee = "^3.14.10"
 psycopg2-binary = "^2.9.3"
 environs = "^9.5.0"
 quart = "^0.17.0"
 hypercorn = "^0.13.2"
+Pyrogram = "^2.0.17"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

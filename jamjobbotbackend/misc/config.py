@@ -84,7 +84,7 @@ def get_config(path: str = None):
         )
 
     return Config(
-        mode=env.enum('APP_MODE', type=AppMode),
+        mode=env.enum('APP_MODE', type=AppMode, ignore_case=True),
         tg_bot=TgBot(
             api_id=env.str("API_ID"),
             api_hash=env.str("API_HASH"),

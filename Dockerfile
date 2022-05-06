@@ -5,7 +5,6 @@ ENV APP_MODE=$APP_MODE
 WORKDIR /usr/src/app
 
 RUN apt update
-RUN apt install systemd -y
 RUN pip3 install poetry
 RUN poetry config virtualenvs.create false
 
@@ -13,4 +12,4 @@ COPY pyproject.toml /usr/src/app
 RUN poetry install
 COPY . /usr/src/app
 
-RUN systemctl enable /usr/src/app/systemd/app.service
+CMD /usr/bin/python3 /usr/src/app/app.py

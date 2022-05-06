@@ -23,7 +23,9 @@ class MeetingServiceType(Enum):
     ZOOM = 4
     MICROSOFT_TEAMS = 5
     SKYPE = 6
-    OTHER = 7
+    VKCalling = 7
+    SBER_JAZZ = 8
+    OTHER = 9
 
 
 class Meeting(BaseModel):
