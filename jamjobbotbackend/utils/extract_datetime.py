@@ -3,7 +3,6 @@ from enum import Enum
 from dataclasses import dataclass
 from typing import Optional
 
-
 class Month(Enum):
     JANUARY = 1
     FEBRUARY = 2
@@ -42,7 +41,19 @@ class DateTimeMarkers:
     month: Optional[Month]
     day_shift: Optional[DayShift]
 
+def extract_time():
+    regexp = r'([0-1]?[0-9]|2[0-3]):[0-5][0-9]'
 
+def extract_date():
+    pass
+
+def extract_weekday():
+    pass
+def extract_dayshift():
+    pass
+
+def extracct_month():
+    pass
 def extract_datetime_markers(text: str) -> DateTimeMarkers:
     dayShiftRegexpMap = {
         'сегодня': DayShift.TODAY,

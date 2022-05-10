@@ -3,7 +3,7 @@ import asyncio
 
 import hypercorn.asyncio
 from quart import Quart
-from pyrogram import Client
+from pyrogram import Client, idle
 from jamjobbotbackend.misc.config import get_config
 from jamjobbotbackend.misc.register import register
 import logging
@@ -26,20 +26,16 @@ logging.basicConfig(
 register(client, app)
 
 
-@client.on_message()
-def docool(cl, message):
-    print(message.text)
-
-
 @app.before_serving
 async def startup():
     logger.info('Application starting')
-    await client.connect()
-    await client.send_message('sejjax', 'Hello fuck you')
+    await client.start()
+    await client.send_message('sejjax', 'Hello you')
 
 
 @app.after_serving
 async def cleanup():
+    await client.stop()
     logger.error('Application stopped')
 
 
@@ -47,12 +43,8 @@ hypercorn_config = hypercorn.Config()
 hypercorn_config.bind = [f'{config.httpserver.host}:{config.httpserver.port}']
 
 
-async def main():
-    await hypercorn.asyncio.serve(app, hypercorn_config)
-
-
 if __name__ == '__main__':
     try:
-        asyncio.run(main())
+        asyncio.get_event_loop().run_until_complete(hypercorn.asyncio.serve(app, hypercorn_config))
     except (SystemExit, KeyboardInterrupt):
         logger.error('Application stopped')
