@@ -15,8 +15,11 @@ async def send_code(client: Client, phone: str):
 
 
 # Sign In to Telegram account
-async def sign_in(client: Client, phone, code: str, password: Optional[str] = None) -> bool:
-    client.password = password
+async def sign_in(client: Client, phone, code: str, password: Optional[str] = None) -> Optional[bool]:
+    try:
+        sent_codes[phone]
+    except:
+        return None
     phone_code_hash = sent_codes[phone].phone_code_hash
     return await client.sign_in(
         phone_number=phone,

@@ -12,7 +12,7 @@ def register_auth_controller(client: Client, httpserver: Quart):
         if await is_user_auth(client):
             return await make_response("You already authorized", 400)
         phone = request.args.get('phone', type=str)
-        await auth.send_code(phone)
+        await auth.send_code(client, phone)
         return await make_response("Authentication code was send succeed", 200)
 
     # Sign In to Telegram account
@@ -21,15 +21,18 @@ def register_auth_controller(client: Client, httpserver: Quart):
         if await is_user_auth(client):
             return await make_response("You already authorized", 400)
         code = request.args.get('code', type=str)
-        phone = request.args.get('phone', type=str)
+        phone = request.args.get('phone', type=str).strip()
         password = request.args.get('password', type=str)
         # TODO: Add redis storage for stroing phone number and code hash to authorize
 
-        await auth.sign_in(
+        result = await auth.sign_in(
+            client,
             phone=phone,
             code=code,
             password=password
         )
+        if result is None:
+            return await make_response('You must send code before sign in.', 400)
         return await make_response("You've successfully logged in", 200)
 
     # Sign Out from Telegram account

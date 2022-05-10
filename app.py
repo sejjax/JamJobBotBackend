@@ -25,11 +25,17 @@ logging.basicConfig(
 )
 register(client, app)
 
+
+@client.on_message()
+def docool(cl, message):
+    print(message.text)
+
+
 @app.before_serving
 async def startup():
     logger.info('Application starting')
     await client.connect()
-    s = client.is_connected
+    await client.send_message('sejjax', 'Hello fuck you')
 
 
 @app.after_serving
