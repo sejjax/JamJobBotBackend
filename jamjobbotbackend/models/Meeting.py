@@ -1,6 +1,6 @@
 from enum import Enum
 from peewee import *
-from . import BaseModel
+from .BaseModel import BaseModel
 
 
 class MeetingType(Enum):

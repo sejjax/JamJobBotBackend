@@ -3,7 +3,7 @@ import asyncio
 
 import hypercorn.asyncio
 from quart import Quart
-from pyrogram import Client, idle
+from pyrogram import Client
 from jamjobbotbackend.misc.config import get_config
 from jamjobbotbackend.misc.register import register
 import logging
@@ -30,7 +30,6 @@ register(client, app)
 async def startup():
     logger.info('Application starting')
     await client.start()
-    await client.send_message('sejjax', 'Hello you')
 
 
 @app.after_serving

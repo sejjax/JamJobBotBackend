@@ -1,11 +1,12 @@
 from peewee import *
-from . import BaseModel
+from .BaseModel import BaseModel
 
 
 class HR(BaseModel):
-    username = TextField()
-    phone_number = TextField()
-    email = TextField()
-    name = TextField()
+    telegram_chat_id = IntegerField()
+    telegram_name = TextField()
+    username = TextField(null=True)
+    phone_number = TextField(null=True)
+    email = TextField(null=True)
     # Vacancy of the company for which the candidate is looking for
-    company = TextField()
+    company = TextField(null=True)
