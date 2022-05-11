@@ -10,3 +10,4 @@ class HR(BaseModel):
     email = TextField(null=True)
     # Vacancy of the company for which the candidate is looking for
     company = TextField(null=True)
+    is_active = BooleanField(default=True)
