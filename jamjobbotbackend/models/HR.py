@@ -1,4 +1,5 @@
-from peewee import *
+from peewee import IntegerField, TextField, BooleanField
+
 from .BaseModel import BaseModel
 
 

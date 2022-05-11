@@ -1,6 +1,7 @@
-from jamjobbotbackend.models.HR import HR
+import re
 from typing import Optional
-from typing import Optional
+
+from jamjobbotbackend.models import HR
 
 
 def create_hr_unique(
@@ -33,3 +34,9 @@ def is_hr_exist(telegram_chat_id: int) -> bool:
         .where(HR.telegram_chat_id == telegram_chat_id) \
         .get_or_none()
     return hr is not None
+
+
+def is_text_from_hr(text: str) -> bool:
+    # Regexp which must hand all messages from HR
+    regexp = r'hr|рекрут|подбор|отклик|hh|пизици|работ|компани|ваканси|researcher'
+    return re.search(regexp, text.lower()) is not None

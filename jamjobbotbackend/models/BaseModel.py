@@ -1,5 +1,6 @@
-from peewee import *
-from jamjobbotbackend.misc.connect_db import connect_db
+from peewee import Model
+
+from jamjobbotbackend.misc import connect_db
 
 db = connect_db()
 

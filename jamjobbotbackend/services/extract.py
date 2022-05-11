@@ -1,7 +1,11 @@
-import datetime
+from typing import Optional
 from enum import Enum
 from dataclasses import dataclass
-from typing import Optional
+import datetime
+import re
+
+from jamjobbotbackend.models import MeetingServiceType
+
 
 class Month(Enum):
     JANUARY = 1
@@ -33,6 +37,7 @@ class DayShift(Enum):
     TOMORROW = 1
     DAY_AFTER_TOMORROW = 2
 
+
 @dataclass
 class DateTimeMarkers:
     year: Optional[int]
@@ -41,19 +46,27 @@ class DateTimeMarkers:
     month: Optional[Month]
     day_shift: Optional[DayShift]
 
+
 def extract_time():
     regexp = r'([0-1]?[0-9]|2[0-3]):[0-5][0-9]'
+
 
 def extract_date():
     pass
 
+
 def extract_weekday():
     pass
-def extract_dayshift():
+
+
+def extract_day_shift():
     pass
 
-def extracct_month():
+
+def extract_month():
     pass
+
+
 def extract_datetime_markers(text: str) -> DateTimeMarkers:
     dayShiftRegexpMap = {
         'сегодня': DayShift.TODAY,
@@ -89,3 +102,12 @@ def extract_datetime_markers(text: str) -> DateTimeMarkers:
 
 def normalize_datetime_markers(markers: DateTimeMarkers, current_datetime: datetime.datetime) -> datetime.datetime:
     pass
+
+
+def extract_interview_link(text: str) -> Optional[tuple[str, MeetingServiceType]]:
+    url_regexp = r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][' \
+                 r'a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,' \
+                 r'}|www\.[a-zA-Z0-9]+\.[^\s]{2,}) '
+    match = re.match(url_regexp, text)
+    if match is None:
+        return None

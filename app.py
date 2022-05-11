@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 import asyncio
+import logging
 
 import hypercorn.asyncio
 from quart import Quart
 from pyrogram import Client
+
 from jamjobbotbackend.misc.config import get_config
 from jamjobbotbackend.misc.register import register
-import logging
 
 config = get_config('.env')
 

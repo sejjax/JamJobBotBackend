@@ -1,5 +1,7 @@
 from typing import Union
-from peewee import *
+
+from peewee import PostgresqlDatabase, SqliteDatabase
+
 from .config import get_config, DBType
 
 

@@ -1,5 +1,6 @@
-from os import environ
 from typing import Union, Optional
+from os import environ
+
 from environs import Env
 
 

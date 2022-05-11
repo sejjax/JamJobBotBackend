@@ -1,13 +1,11 @@
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
-from pyrogram import Client
 
 
+# Filter if this message from new chat
 def new_chat_filter_callable(client: Client, message: Message):
-    messages = []
-    async for message in client.search_messages(message.chat.id, query="", limit=2):
-        messages.append(message)
-    return len(messages) <= 1
+    messages = client.get_messages(message.chat.id)
+    return len(list(messages)) <= 0
 
 
 new_chat_filter = filters.create(new_chat_filter_callable)

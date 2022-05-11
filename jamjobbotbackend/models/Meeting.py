@@ -1,5 +1,7 @@
 from enum import Enum
-from peewee import *
+
+from peewee import DateTimeField, TimeField, IntegerField, TextField
+
 from .BaseModel import BaseModel
 
 

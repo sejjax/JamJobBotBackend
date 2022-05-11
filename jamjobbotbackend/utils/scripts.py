@@ -1,9 +1,10 @@
 import os
-from jamjobbotbackend.misc.connect_db import connect_db
-from jamjobbotbackend.models.HR import HR
-from jamjobbotbackend.models.Meeting import Meeting
+
+from jamjobbotbackend.misc import connect_db
+from jamjobbotbackend.models import HR, Meeting
 
 IMAGE_NAME = 'jamjobbotbackend'
+
 # list of forwarded ports from host to conrainer in format <HostPort>:<ContainerPort>
 FORWARDED_PORTS = [
     '443:443',

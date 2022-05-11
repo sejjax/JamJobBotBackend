@@ -1,16 +1,16 @@
-from dataclasses import dataclass
+from typing import List, Optional
 from enum import Enum
+from dataclasses import dataclass
 
 from environs import Env
-from typing import List, Optional
-from jamjobbotbackend.utils.get_env import get_env
 
+from jamjobbotbackend.utils import get_env
 
-# Global application configuration class
 
 class AppMode(Enum):
     DEVELOPMENT = 'development'
     PRODUCTION = 'production'
+
 
 class DBType(Enum):
     SQLITE = 'sqlite'
