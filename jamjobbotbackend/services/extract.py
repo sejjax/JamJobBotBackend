@@ -78,8 +78,20 @@ def extract_month(string: str) -> Optional[Month]:
 # If this param greater than max value, then increase most significant param
 # Sequence: month <- weekday + day_shift <- time
 def set_time_safe(_datetime: datetime.datetime, time: datetime.time):
-    MAX_HOUR_MINUTES = 59
-    MAX_DAY_HOURS = 23
+    def set_hour_safe(_datetime: datetime.datetime, hour: int):
+        if _datetime.hour > _datetime.hour:
+            return _datetime.replace(
+                day=_datetime.day + 1,
+                hour=hour
+            )
+
+    def set_minute_safe(_datetime: datetime.datetime, minute: int):
+        if _datetime.minute > minute:
+            _datetime = set_hour_safe(_datetime.hour + 1)
+            _datetime.replace(minute=minute)
+
+    set_minute_safe(_datetime, time.minute)
+    set_hour_safe(_datetime, time.hour)
 
 
 def set_weekday_safe(_datetime: datetime.datetime, weekday: WeekDay):
