@@ -134,7 +134,7 @@ def normalize_datetime_markers(markers: DateTimeMarkers, current_datetime: datet
 def extract_interview_link(string: str) -> Optional[tuple[str, Optional[MeetingServiceType]]]:
     meetingServiceTypeRegexpMap = {
         'meats.google.com': MeetingServiceType.GOOGLE_MEETS,
-        'teams.micosoft.com': MeetingServiceType.MICROSOFT_TEAMS,
+        'teams.microsoft.com': MeetingServiceType.MICROSOFT_TEAMS,
         'zoom.us': MeetingServiceType.ZOOM,
         'skype.com': MeetingServiceType.SKYPE,
         'jazz.sber.ru': MeetingServiceType.SBER_JAZZ,
@@ -142,8 +142,8 @@ def extract_interview_link(string: str) -> Optional[tuple[str, Optional[MeetingS
     url_regexp = r'(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][' \
                  r'a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,' \
                  r'}|www\.[a-zA-Z0-9]+\.[^\s]{2,}) '
-    match = re.search(url_regexp, string)
-    if match is None:
+    match = regex.findall(url_regexp, string)
+    if len(match) is 0:
         return None
     last = match[-1]
     service_type = get_value_by_key_regexp_matching(meetingServiceTypeRegexpMap, url_regexp)
